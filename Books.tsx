@@ -14,8 +14,10 @@ export default function Books({navigation}: {navigation: any}) {
   }, [navigation])
   
   function getBooks() {
-        fetch("http://192.168.0.103:4000/books", {
-          method: "GET"
+        fetch("https://0b83-52-124-40-121.ngrok.io/albums", {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json'}
         }).then(res => res.json())
           .then(res => {
            setBooks(res)
@@ -33,10 +35,10 @@ export default function Books({navigation}: {navigation: any}) {
       paddingTop: 20, paddingBottom: 20, paddingRight: 10, paddingLeft: 10, borderColor: '#e7e7e6', borderRadius: 8, borderWidth: 1, margin: 10}}>
      <View style={{flexDirection: 'column', alignItems: 'center'}}>  
       <Text style={{fontSize: 28, fontWeight: '500', paddingBottom: 10}}>{item.title}</Text>
-      <Text style={{fontSize: 18, fontWeight: '400', paddingBottom: 10}}>{item.author}</Text>
-      <Text style={{fontSize: 20, fontWeight: '300', paddingBottom: 10, textAlign: 'center'}}>{item.desc}</Text>
+      <Text style={{fontSize: 18, fontWeight: '400', paddingBottom: 10}}>{item.artist}</Text>
+      <Text style={{fontSize: 20, fontWeight: '300', paddingBottom: 10, textAlign: 'center'}}>{item.price}</Text>
       <TouchableOpacity style={{backgroundColor: "#000", height: 75, width: 150, borderRadius: 5, alignSelf: 'center', justifyContent: 'center' }} 
-      onPress={() => navigation.navigate('Book Detail',{ id: item.id, title: item.title, author: item.author, desc: item.desc })}>
+      onPress={() => navigation.navigate('Book Detail',{ id: item.id, title: item.title, artist: item.artist, price: item.price })}>
         <Text style={{color: "#fff", fontSize: 25, alignSelf: 'center'}}>Details</Text></TouchableOpacity>
       </View></View>}
       estimatedItemSize={200}/>
